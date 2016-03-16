@@ -16,10 +16,36 @@ dependencies:
 
 ## Usage
 
+With [Kemal](http://kemalcr.com):
 
 ```crystal
+require "kemal"
 require "socket_io"
+
+ws "/" do |socket|
+  socket_io = SocketIO::Base.new socket
+  socket_io.on("start") do |message|
+    socket_io.emit :tick, { array: [1, 2, 3, 4], hash: { field: "Field" } }
+  end
+end
 ```
+
+### new
+
+`SocketIO::Base.initialize(@socket : HTTP::WebSocket)`
+
+### on
+
+Setting up event listener.
+
+`SocketIO::Base#on(name : String, &action : JSON::Any -> Void)`
+
+### emit
+
+Send to clients json: `{ "name": "<action_name>", "message": "<smth>" }`
+
+`emit(name : String | Symbol, message : Hash)`
+
 
 ## Contributing
 
