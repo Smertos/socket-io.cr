@@ -46,6 +46,10 @@ Send to clients json: `{ "name": "<action_name>", "message": "<smth>" }`
 
 `emit(name : String | Symbol, message : Hash)`
 
+## On client
+
+Use JS analog [SocketIO.js](https://gist.github.com/forsaken1/6223ed86422c0996634b)
+
 
 ## Contributing
 
