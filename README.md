@@ -22,15 +22,15 @@ With [Kemal](http://kemalcr.com):
 require "kemal"
 require "socket_io"
 
-@socket_io = SocketIO::Base.new
+socket_io = SocketIO::Base.new
 
-handler = @socket_io.on_connection do |session| # session : SocketIO::WebSocket
+handler = socket_io.on_connection do |session| # session : SocketIO::WebSocket
   session.on("client_event") do |message|
     puts message
   end
 end
 
-@socket_io.emit :tick, { array: [1, 2, 3, 4], hash: { field: "Field" } } # send to all client
+socket_io.emit :tick, { array: [1, 2, 3, 4], hash: { field: "Field" } } # send to all client
 
 Kemal.config.add_handler handler
 Kemal.run
