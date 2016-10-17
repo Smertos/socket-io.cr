@@ -27,6 +27,7 @@ socket_io = SocketIO::Base.new
 handler = socket_io.on_connection do |session| # session : SocketIO::WebSocket
   session.on("client_event") do |message|
     puts message
+    session.emit("some_event", { message: "Hello!" })
   end
 end
 
