@@ -10,6 +10,11 @@ module SocketIO
       HTTP::WebSocketHandler.new do |session|
         socket = WebSocket.new(session, self)
         @sockets << socket
+        
+        socket.on_close do
+          @sockets.remove socket
+        end
+        
         action.call socket
       end
     end
