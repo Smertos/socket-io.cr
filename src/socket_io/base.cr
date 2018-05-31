@@ -12,7 +12,7 @@ module SocketIO
         @sockets << socket
         
         socket.on_close do
-          @sockets.remove socket
+          @sockets.delete socket
         end
         
         action.call socket
