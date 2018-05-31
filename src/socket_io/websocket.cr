@@ -19,6 +19,12 @@ module SocketIO
         @actions[name.to_s] = action
       end
     end
+  
+    def on_close(&action : -> Void)
+      @socket.on_close do
+        action.call
+      end
+    end
 
     def emit(name : String | Symbol, message : NamedTuple)
       json_message = { name: name, message: message }
